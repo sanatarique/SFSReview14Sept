@@ -1,0 +1,18 @@
+.THIS {
+}
+
+.THIS .textStyle {
+  font-weight: bold;
+  font-size: medium;
+}
+
+.THIS .backgroundFormat {
+  background-color : skyblue;
+}
+
+.THIS .alignleft {
+	float: left;
+}
+.THIS .alignright {
+	float: right;
+}

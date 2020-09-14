@@ -1,0 +1,49 @@
+<aura:component controller = "SFS_CustDetailsController">
+   <!--Attribute initialization-->
+  <aura:attribute name="customerDetails" type="Object[]"/>
+  <aura:attribute name="columns" type="List"/>
+  <aura:attribute name="TotalAmount" type="Currency" default= "0"/>
+  <aura:attribute name="Count" type="Integer" default= "0"/>
+  <aura:attribute name="toDeleteRows" type="Object[]"/>
+  <!--Init Handler-->
+  <aura:handler name="init" value="{!this}" action="{!c.fetchCustDetails}"/>
+
+  <!--Header part-->
+  <lightning:card title="SFS Customer Details">
+    <div class="slds-m-around--medium">
+      <div class="slds-page-header" role="banner">
+          <div class="slds-media__body">
+            <lightning:button variant="brand"
+                              label="Fetch Details"
+                              onclick="{!c.doConCallout }" />
+          </div>
+      </div>
+    </div>
+    <lightning:datatable data="{!v.customerDetails}"
+                        columns="{!v.columns}"
+                        keyField="id"
+                        onrowselection="{!c.getSelectedRow}"
+                        onsave ="{!c.onSave}"/>
+    <lightning:button variant="brand"
+                        label="Add Debt"
+                        onclick="{!c.addRowsDetails }" />
+    <lightning:button variant="brand"
+                        label="Remove Debt"
+                        onclick="{!c.removeRows }" />
+
+    <div class="slds-grid slds-wrap ">
+        <div class="slds-col slds-size_11-of-12 textStyle backgroundFormat">
+          <span >Total</span>
+        </div>
+        <div class="slds-col slds-size_1-of-12 textStyle backgroundFormat">
+          <span> ${!v.TotalAmount}</span>
+        </div>
+        <div class="slds-col slds-size_1-of-3 ">
+            <span>Total Row Count : {!v.customerDetails.length}</span>
+        </div>
+        <div class="slds-col slds-size_1-of-3 ">
+          <span>Check Row Count : {!v.Count}  </span>
+        </div>
+    </div>
+  </lightning:card>
+</aura:component>
